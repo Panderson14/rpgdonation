@@ -15,15 +15,16 @@ $address=$_POST['address'];
 $city=$_POST['city'];
 $state=$_POST['state'];
 $zip=$_POST['zipcode'];
+$pass=$_POST['pass'];
 
 
 $order = "INSERT INTO siteusers
 
-        (first_name, last_name, email, address, city, state, zip_code)
+        (first_name, last_name, email, address, city, state, zip_code, password)
 
         VALUES
 
-        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip')";
+        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass')";
 
 
 $result = mysql_query($order);
