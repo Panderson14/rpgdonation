@@ -43,23 +43,23 @@
 								<form method="post" action="#">
 									<div class="row uniform 50%">
 										<div class="4u 12u$(xsmall)">
-											<input type="text" name="first" id="first" value="" placeholder="First Name" />
+											<input type="text" name="first" id="first" value="" placeholder="First Name" required/>
 										</div>
 										<div class="4u 12u$(xsmall)">
-											<input type="text" name="last" id="last" value="" placeholder="Last Name" />
+											<input type="text" name="last" id="last" value="" placeholder="Last Name" required/>
 										</div>
 										<div class="4u$ 12u$(xsmall)">
-											<input type="email" name="email" id="email" value="" placeholder="Email" />
+											<input type="email" name="email" id="email" value="" placeholder="Email"  required/>
 										</div>
 										<div class="12u$">
-											<input type="text" name="address" id="address" value="" placeholder="Address" />
+											<input type="text" name="address" id="address" value="" placeholder="Address" required/>
 										</div>
 										<div class="4u 12u$(xsmall)">
-											<input type="text" name="city" id="city" value="" placeholder="City" />
+											<input type="text" name="city" id="city" value="" placeholder="City" required/>
 										</div>
 										<div class="4u 12u$(xsmall)">
 											<div class="select-wrapper">
-												<select name="category" id="category">
+												<select name="category" id="category" required>
 													<option value="">State</option>
 													<option value="AL">Alabama</option>
 													<option value="AK">Alaska</option>
@@ -116,12 +116,12 @@
 											</div>
 										</div>
 										<div class="4u$ 12u$(xsmall)">
-											<input type="text" name="zipcode" id="zipcode" value="" placeholder="Zip Code" />
+											<input type="text" name="zipcode" id="zipcode" value="" pattern="[0-9]{5}" placeholder="Zip Code" required/>
 										</div>
-										<div class="12u$(medium)">
-											<input type="checkbox" id="terms" name="terms">
+<!-- 										<div class="12u$(medium)">
+											<input type="checkbox" id="terms" name="terms" required>
 											<label for="terms">By clicking this button, you agree to our terms and conditions.</label>
-										</div>
+										</div> -->
 										<div class="12u$">
 												<input type="submit" value="Create account" class="button special fit" />
 										</div>
