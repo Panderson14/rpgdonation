@@ -35,7 +35,11 @@
 		    expiry = expiry.replace(/\s+/g, '')
 		    var expSplit = expiry.split("/")
 		    if (expSplit[0] < 1 || expSplit[0] >12) {
-		    	alert("invalid expiration date");
+		    	alert("invalid month in expiration date");
+		    	return false;
+		    }
+		    if (expSplit[1].length > 2) {
+		    	alert("invalid year in expiration date");
 		    	return false;
 		    }
 		    var number = document.forms["newUserForm"]["number"].value;
