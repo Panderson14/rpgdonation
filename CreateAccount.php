@@ -1,5 +1,5 @@
 <?php
-
+require 'PHPMailerAutoload.php';
 $user_name = "root";
 $password = NULL;
 $database = "rpgcharity";
@@ -28,5 +28,33 @@ $order = "INSERT INTO siteusers
 
 
 $result = mysql_query($order);
-header('Location: /index.html')
+
+
+$mail = new PHPMailer;
+
+//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';  					  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'rpgcharity@gmail.com';                 // SMTP username
+$mail->Password = 'charity4U';                           // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
+
+$mail->setFrom('rpgcharity@gmail.com', 'RPG Charity');
+$mail->addAddress($email, $first + $last);     // Add a recipient, Name is optional
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = 'Thanks for Signing Up';
+$mail->Body    = 'Thanks for signing up, ' . $first . '. We are really excited for you to get started!';
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
+//header('Location: /index.html')
 ?>
