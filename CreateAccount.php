@@ -16,15 +16,19 @@ $city=$_POST['city'];
 $state=$_POST['state'];
 $zip=$_POST['zipcode'];
 $pass=$_POST['pass'];
+$credit_number=$_POST['number'];
+$credit_name=$_POST['name'];
+$credit_date=$_POST['expiry'];
+$credit_cvv=$_POST['cvc'];
 
 
 $order = "INSERT INTO siteusers
 
-        (first_name, last_name, email, address, city, state, zip_code, password)
+        (first_name, last_name, email, address, city, state, zip_code, password, credit_number, credit_name, credit_date, credit_cvv)
 
         VALUES
 
-        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass')";
+        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass', '$credit_number', '$credit_name', '$credit_date', '$credit_cvv')";
 
 
 $result = mysql_query($order);
