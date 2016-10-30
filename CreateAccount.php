@@ -56,5 +56,5 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
-//header('Location: /index.html')
+header('Location: /index.html')
 ?>
