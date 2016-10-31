@@ -22,36 +22,6 @@
 		        alert("Not a valid e-mail address");
 		        return false;
 		    }
-		    var cvv = document.forms["newUserForm"]["cvc"].value;
-		    if (cvv.length < 3) {
-		    	alert("CVV too short");
-		    	return false;
-		    }
-		    if (cvv.length > 4) {
-		    	alert("CVV too long");
-		    	return false;
-		    }
-		    var expiry = document.forms["newUserForm"]["expiry"].value;
-		    expiry = expiry.replace(/\s+/g, '')
-		    var expSplit = expiry.split("/")
-		    if (expSplit[0] < 1 || expSplit[0] >12) {
-		    	alert("invalid month in expiration date");
-		    	return false;
-		    }
-		    if (expSplit[1].length > 2) {
-		    	alert("invalid year in expiration date");
-		    	return false;
-		    }
-		    var number = document.forms["newUserForm"]["number"].value;
-		    var numLength = number.replace(/\s+/g, '').length
-		    if (numLength < 12 ) {
-		    	alert("Credit card number too short");
-		    	return false;
-		    }
-		    if (numLength > 19) {
-		    	alert("Credit card number too long");
-		    	return false;
-		    }
 		}
 		</script>
 	</head>

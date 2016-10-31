@@ -1,5 +1,64 @@
 <?php
+use PayPal\Api\Payer;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Details;
+use PayPal\Api\Amount;
+use PayPal\Api\Transaction;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Payment;
+
+require 'start.php';
 require 'PHPMailerAutoload.php';
+$product = 'RPG Membership';
+$price = 1.00;
+$shipping = 0.00;
+
+$total = $price + $shipping;
+
+$payer = new Payer();
+$payer->setPaymentMethod('paypal');
+
+$item = new Item();
+$item->setName($product)
+	->setCurrency('USD')
+	->setQuantity(1)
+	->setPrice($price);
+
+$itemList = new ItemList();
+$itemList->setItems(array($item));
+$details = new Details();
+$details->setShipping($shipping)
+	->setSubtotal($price);
+$amount = new Amount();
+$amount->setCurrency('USD')
+	->setTotal($total)
+	->setDetails($details);
+
+$transaction = new Transaction();
+$transaction->setAmount($amount)
+	->setItemList($itemList)
+	->setDescription('Payment for RPG Charity Membership')
+	->setInvoiceNumber(uniqid());
+$redirectUrls = new RedirectUrls();
+$redirectUrls->setReturnUrl('localhost/pay.php?success=true')
+	->setCancelUrl('localhost/pay.php?success=false');
+$payment = new Payment();
+$payment->setIntent('sale')
+	->setPayer($payer)
+	->setRedirectUrls($redirectUrls)
+	->setTransactions(array($transaction));
+try {
+	$payment->create($paypal);
+
+} catch (Exception $e) {
+	echo $e;
+}
+
+
+$approvalUrl = $payment->getApprovalLink();
+header("Location: {$approvalUrl}");
+
 $user_name = "root";
 $password = NULL;
 $database = "rpgcharity";
@@ -16,19 +75,15 @@ $city=$_POST['city'];
 $state=$_POST['state'];
 $zip=$_POST['zipcode'];
 $pass=$_POST['pass'];
-$credit_number=$_POST['number'];
-$credit_name=$_POST['name'];
-$credit_date=$_POST['expiry'];
-$credit_cvv=$_POST['cvc'];
 
 
 $order = "INSERT INTO siteusers
 
-        (first_name, last_name, email, address, city, state, zip_code, password, credit_number, credit_name, credit_date, credit_cvv)
+        (first_name, last_name, email, address, city, state, zip_code, password)
 
         VALUES
 
-        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass', '$credit_number', '$credit_name', '$credit_date', '$credit_cvv')";
+        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass')";
 
 
 $result = mysql_query($order);
@@ -60,5 +115,5 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
-header('Location: /index.html')
+//header('Location: /index.html')
 ?>
