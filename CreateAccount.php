@@ -8,7 +8,7 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 
-require 'app/start.php';
+require 'start.php';
 require 'PHPMailerAutoload.php';
 $product = 'RPG Membership';
 $price = 1.00;
@@ -50,7 +50,6 @@ $payment->setIntent('sale')
 	->setTransactions(array($transaction));
 try {
 	$payment->create($paypal);
-
 } catch (Exception $e) {
 	echo $e;
 }
@@ -115,5 +114,5 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
-//header('Location: /index.html')
+//header('Location: /index.html');
 ?>

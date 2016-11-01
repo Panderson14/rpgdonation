@@ -21,6 +21,5 @@ try {
 } catch (Exception $e){
 	die($e);
 }
-echo 'Payment Made!';
-
+header('Location: /index.html');
 ?>
