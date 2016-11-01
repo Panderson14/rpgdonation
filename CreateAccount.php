@@ -8,7 +8,7 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 
-require 'start.php';
+require 'app/start.php';
 require 'PHPMailerAutoload.php';
 $product = 'RPG Membership';
 $price = 1.00;
@@ -41,8 +41,8 @@ $transaction->setAmount($amount)
 	->setDescription('Payment for RPG Charity Membership')
 	->setInvoiceNumber(uniqid());
 $redirectUrls = new RedirectUrls();
-$redirectUrls->setReturnUrl('localhost/pay.php?success=true')
-	->setCancelUrl('localhost/pay.php?success=false');
+$redirectUrls->setReturnUrl('http://localhost/pay.php?success=true')
+	->setCancelUrl('http://localhost/pay.php?success=false');
 $payment = new Payment();
 $payment->setIntent('sale')
 	->setPayer($payer)
