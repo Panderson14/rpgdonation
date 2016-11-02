@@ -4,11 +4,11 @@ use PayPal\Api\PaymentExecution;
 require 'start.php';
 
 if(!isset($_GET['success'], $_GET['paymentId'], $_GET['PayerID'])) {
-	die();
+	header('Location: /index.html');
 }
 
 if ((bool)$_GET['success'] === false) {
-	die();
+	header('Location: /index.html');
 }
 $paymentId = $_GET['paymentId'];
 $payerId = $_GET['PayerID'];
