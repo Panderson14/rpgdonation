@@ -48,6 +48,8 @@ $payment->setIntent('sale')
 	->setPayer($payer)
 	->setRedirectUrls($redirectUrls)
 	->setTransactions(array($transaction));
+$email=$_POST['email'];
+setcookie("rpgemail", $email, time() + (86400 * 30), "/"); 
 try {
 	$payment->create($paypal);
 } catch (Exception $e) {
@@ -74,15 +76,20 @@ $city=$_POST['city'];
 $state=$_POST['state'];
 $zip=$_POST['zipcode'];
 $pass=$_POST['pass'];
+$credit=$_POST['number'];
+$expiry=$_POST['expiry'];
+$cvc=$_POST['cvc'];
+$hasPaid=0;
+//setcookie("rpgemail", $email, time() + (86400 * 30), "/"); 
 
 
 $order = "INSERT INTO siteusers
 
-        (first_name, last_name, email, address, city, state, zip_code, password)
+        (first_name, last_name, email, address, city, state, zip_code, password, credit, expiry, cvc, hasPaid)
 
         VALUES
 
-        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass')";
+        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass', '$credit', '$expiry', '$cvc', '$hasPaid')";
 
 
 $result = mysql_query($order);

@@ -19,7 +19,23 @@ $execute->setPayerId($payerId);
 try {
 	$result = $payment->execute($execute, $paypal);
 } catch (Exception $e){
-	die($e);
+	header('Location: /index.html');
 }
+
+$user_name = "root";
+$password = NULL;
+$database = "rpgcharity";
+$server = "localhost";
+//$conn = new mysqli($server, $user_name, $password, $database);
+
+mysql_connect("$server","$user_name","$password");
+
+mysql_select_db("$database");
+
+$email = $_COOKIE['rpgemail'];
+$sql = "UPDATE siteusers SET hasPaid='1' WHERE email='" . $email . "'";
+//$conn->query($sql);
+//conn->close
+$result = mysql_query($sql);
 header('Location: /index.html');
 ?>
