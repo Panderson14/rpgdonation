@@ -6,40 +6,67 @@
 -->
 <html>
 	<script>
+		function addAnswer(){
+			var check = document.getElementById("response");
+			if ($('#response').length == 0) {
+				var x = document.createElement("input");
+				x.setAttribute("type", "text");
+				x.setAttribute("id", "response");
+				$("#answerlabel").append(x);
+			}
+			
+		}
+		function removeAnswer(){
+			$("#response").remove();
+		}
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["attack"];
+			var x = document.forms["ChoiceForm"]["answer"];
 
 			var result = document.createElement("p");
+			result.setAttribute("id", "result");
 			result.setAttribute("align","center");
 			result.style.fontSize="150%";
 			//alert(x);
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You decided to fight the troll. This was a terrible decision. He splatters you across the ground with his club. You are dead."));
+				if ($("#response").val().toUpperCase() == "HISTORY"){
+					result.appendChild(document.createTextNode('The goblin looks over at you in outrage. "How did you get that right?! You are the first I have encountered to get that right!" The goblin breathes deeply and seems to relax. "I suppose a deal is a deal. You may pass." You continue deeper into the forest.'));
+				var y = document.createElement("a");
+				y.setAttribute("href","warrior2.html");
+				y.setAttribute("class", "button small");
+				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				
+				$("#buttondiv").append(y);
+				}else {
+					result.appendChild(document.createTextNode('The goblin smiles sinisterly at you. "Guess what buddy? That is incorrect, and now you are going to pay the price." He then charges at you and stabs you in the chest repeatedly until you bleed out. You are dead.'));
+				}
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				return false;
 			}
-			x = document.forms["ChoiceForm"]["run"];
+			x = document.forms["ChoiceForm"]["ignore"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("Smart move. You decided to run away. The troll saw you outrunning him and gave up. You escape."));
+				result.appendChild(document.createTextNode("You tried to ignore the goblin. Goblins don't like to be ignored. As you walk away, the goblin throws his knife at you and it hits you in the jugular. You can't breathe and you die."));
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
+				
+				return false;
+			}
+			x = document.forms["ChoiceForm"]["attack"];
+			if (x.checked){
+				result.appendChild(document.createTextNode("The goblin is very tiny. You easily pick him up by the throat and choke him out. The goblin is dead."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","rogue2.html");
+				y.setAttribute("href","warrior2.html");
 				y.setAttribute("class", "button small");
-
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
 				result.appendChild(y);
-				y.setAttribute("align", "center");
-				return false;
-			}
-			x = document.forms["ChoiceForm"]["talk"];
-			if (x.checked){
-				result.appendChild(document.createTextNode("You try talking about baseball with the troll. This works at first, until you say the Mets suck. Then the troll beats you into a puddle of blood. You are dead."));
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
 				return false;
 			}
 
@@ -79,22 +106,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Rogue Adventure 1</h2>
+							<h2 align="center" id="Adventure">Warrior Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You're wandering in a large, empty field. In the distance, you see a river, sparkling like nothing you've ever seen. You start to head towards it. As this happens, a troll appears, holding a club and wearing a half ripped baseball cap! What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You are walking deep into a forest, and all of a sudden a goblin appears! The goblin is decked out in a suit, the kind you might find on characters like James Bond. You see the goblin is holding an ornate knife. Then he begins to speak. "Answer me this riddle, or prepare to die. I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty." What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input  type="radio" name="choice" value="attack" id="attack"/>
-  										<label for="attack"> Fight the troll with nothing but your fists</label><br>
+  										<input onclick="addAnswer()" type="radio" name="choice" value="answer" id="answer"/>
+  										<label id = "answerlabel" for="answer"> Answer the riddle</label><br>
   									</div>
   									<div>
-  										<input  type="radio" name="choice" value="talk" id="talk"/> 
-  										<label for="talk">Try to talk about the World Series with the troll</label><br>
+  										<input onclick = "removeAnswer()" type="radio" name="choice" value="attack" id="attack"/> 
+  										<label for="attack">Fight the goblin with your bare fists</label><br>
 	  								</div>
   									<div>
-  										<input type="radio" name="choice" value="run" id="run"/>
-  										<label for="run">Run for your life! </label> <br>
+  										<input onclick = "removeAnswer()" type="radio" name="choice" value="ignore" id="ignore"/>
+  										<label for="ignore">Ignore the goblin and brush past him </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">

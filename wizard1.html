@@ -7,7 +7,7 @@
 <html>
 	<script>
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["attack"];
+			var x = document.forms["ChoiceForm"]["stomp"];
 
 			var result = document.createElement("p");
 			result.setAttribute("align","center");
@@ -16,30 +16,44 @@
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You decided to fight the troll. This was a terrible decision. He splatters you across the ground with his club. You are dead."));
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
-				return false;
-			}
-			x = document.forms["ChoiceForm"]["run"];
-			if (x.checked){
-				result.appendChild(document.createTextNode("Smart move. You decided to run away. The troll saw you outrunning him and gave up. You escape."));
+				result.appendChild(document.createTextNode("You stomp on the frog. The frog's blood gets all over your shoes. You wash your boots off in the pond and walk away."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","rogue2.html");
+				y.setAttribute("href","wizard2.html");
 				y.setAttribute("class", "button small");
-
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
-				result.appendChild(y);
-				y.setAttribute("align", "center");
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				
+				$("#buttondiv").append(y);
 				return false;
 			}
-			x = document.forms["ChoiceForm"]["talk"];
+			x = document.forms["ChoiceForm"]["kiss"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You try talking about baseball with the troll. This works at first, until you say the Mets suck. Then the troll beats you into a puddle of blood. You are dead."));
+				result.appendChild(document.createTextNode('You pick the toad up, and give it a juicy kiss. Immediately, you see the frog transform into a woman. At least it looks like a woman. Moments later, you realize, it is actually a succubus from hell. The succubus begins to speak. "Thank you for setting me free from that pathetic form. Now I can unleash my wrath on the world!" She then lunges at you and starts eating you alive. You are dead. In addition, you have started the apocalypse.'));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
+				
+				return false;
+			}
+			x = document.forms["ChoiceForm"]["ignore"];
+			if (x.checked){
+				result.appendChild(document.createTextNode("You completely ignore the frog. You start to walk away and moments later you look back and the frog has dissappeared. You put it out of your mind."));
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
+				var y = document.createElement("a");
+				y.setAttribute("href","wizard2.html");
+				y.setAttribute("class", "button small");
+				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				
+				$("#buttondiv").append(y);
 				return false;
 			}
 
@@ -79,22 +93,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Rogue Adventure 1</h2>
+							<h2 align="center" id="Adventure">Wizard Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You're wandering in a large, empty field. In the distance, you see a river, sparkling like nothing you've ever seen. You start to head towards it. As this happens, a troll appears, holding a club and wearing a half ripped baseball cap! What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You're relaxing against a tree beside your favorite pond, and you see a frog hop up to you. Surprisingly, the frog starts to speak. "Hi, could you help me out? I'm a princess - a really pretty one, I might add - but I'm trapped in the body of this frog. If you kiss me, I'll return to my normal form and I'll be forever grateful." What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input  type="radio" name="choice" value="attack" id="attack"/>
-  										<label for="attack"> Fight the troll with nothing but your fists</label><br>
+  										<input type="radio" name="choice" value="stomp" id="stomp"/>
+  										<label for="stomp"> Stomp on the Frog </label><br>
   									</div>
   									<div>
-  										<input  type="radio" name="choice" value="talk" id="talk"/> 
-  										<label for="talk">Try to talk about the World Series with the troll</label><br>
+  										<input type="radio" name="choice" value="kiss" id="kiss"/> 
+  										<label for="kiss">Kiss the frog</label><br>
 	  								</div>
   									<div>
-  										<input type="radio" name="choice" value="run" id="run"/>
-  										<label for="run">Run for your life! </label> <br>
+  										<input type="radio" name="choice" value="ignore" id="ignore"/>
+  										<label for="ignore">Ignore the frog and walk away </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">
