@@ -5,11 +5,11 @@ require 'start.php';
 require 'PHPMailerAutoload.php';
 
 if(!isset($_GET['success'], $_GET['paymentId'], $_GET['PayerID'])) {
-	header('Location: /index.html');
+	header('Location: /index.php');
 }
 
 if ((bool)$_GET['success'] === false) {
-	header('Location: /index.html');
+	header('Location: /index.php');
 }
 $paymentId = $_GET['paymentId'];
 $payerId = $_GET['PayerID'];
@@ -20,7 +20,7 @@ $execute->setPayerId($payerId);
 try {
 	$result = $payment->execute($execute, $paypal);
 } catch (Exception $e){
-	header('Location: /index.html');
+	header('Location: /index.php');
 }
 session_start();
 $user_name = "root";
@@ -92,5 +92,5 @@ if(!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
-header('Location: /index.html');
+header('Location: /index.php');
 ?>

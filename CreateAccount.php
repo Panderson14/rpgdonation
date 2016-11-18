@@ -80,5 +80,4 @@ try {
 
 $approvalUrl = $payment->getApprovalLink();
 header("Location: {$approvalUrl}");
-//header('Location: /index.html');
 ?>
