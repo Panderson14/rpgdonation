@@ -7,39 +7,61 @@
 <html>
 	<script>
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["attack"];
+			var x = document.forms["ChoiceForm"]["heal"];
 
 			var result = document.createElement("p");
 			result.setAttribute("align","center");
 			result.style.fontSize="150%";
-			//alert(x);
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You decided to fight the troll. This was a terrible decision. He splatters you across the ground with his club. You are dead."));
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
-				return false;
-			}
-			x = document.forms["ChoiceForm"]["run"];
-			if (x.checked){
-				result.appendChild(document.createTextNode("Smart move. You decided to run away. The troll saw you outrunning him and gave up. You escape."));
+				result.appendChild(document.createTextNode("You decided to heal him. Almost immediately, his gash is gone. He get's up quickly, thanks you, and heads down the road. You feel good about yourself."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","rogue2.html");
+				y.setAttribute("href","priest2.html");
 				y.setAttribute("class", "button small");
 
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
-				result.appendChild(y);
-				y.setAttribute("align", "center");
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				$("#buttondiv").append(y);
 				return false;
 			}
-			x = document.forms["ChoiceForm"]["talk"];
+			x = document.forms["ChoiceForm"]["ignore"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You try talking about baseball with the troll. This works at first, until you say the Mets suck. Then the troll beats you into a puddle of blood. You are dead."));
+				result.appendChild(document.createTextNode("You walk away from him. You're a real jerk, but you continue on your way."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
+				var y = document.createElement("a");
+				y.setAttribute("href","priest2.html");
+				y.setAttribute("class", "button small");
+
+				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				$("#buttondiv").append(y);
+				return false;
+			}
+			x = document.forms["ChoiceForm"]["attack"];
+			if (x.checked){
+				result.appendChild(document.createTextNode("You snap his neck. You could have healed him, but you didn't how does that make you feel? You continue on your journey."));
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
+				var y = document.createElement("a");
+				y.setAttribute("href","priest2.html");
+				y.setAttribute("class", "button small");
+				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				$("#buttondiv").append(y);
 				return false;
 			}
 
@@ -79,22 +101,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Rogue Adventure 1</h2>
+							<h2 align="center" id="Adventure">Priest Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You're wandering in a large, empty field. In the distance, you see a river, sparkling like nothing you've ever seen. You start to head towards it. As this happens, a troll appears, holding a club and wearing a half ripped baseball cap! What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You're walking on a long road and you see an injured person up ahead. As you approach, he speaks. "Please help me. I can see that you are a priest, and I could really use some help. Please." You then notice the source of his injury: he has large gash on his side. What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input  type="radio" name="choice" value="attack" id="attack"/>
-  										<label for="attack"> Fight the troll with nothing but your fists</label><br>
+  										<input  type="radio" name="choice" value="heal" id="heal"/>
+  										<label for="heal"> Cast a spell of healing on him</label><br>
   									</div>
   									<div>
-  										<input  type="radio" name="choice" value="talk" id="talk"/> 
-  										<label for="talk">Try to talk about the World Series with the troll</label><br>
+  										<input  type="radio" name="choice" value="ignore" id="ignore"/> 
+  										<label for="ignore">Ignore him, and keep on walking</label><br>
 	  								</div>
   									<div>
-  										<input type="radio" name="choice" value="run" id="run"/>
-  										<label for="run">Run for your life! </label> <br>
+  										<input type="radio" name="choice" value="attack" id="attack"/>
+  										<label for="attack">Put him out of his misery </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">
