@@ -18,17 +18,9 @@
 		<div id="page-wrapper" style="background-color:rgba(39, 40, 51, 0.965);">
 
 			<!-- Header -->
-				<header style="background-color:rgba(39, 40, 51, 0.965);" id="header">
-					<h1 id="logo" ><a href="index.php">
-						<img src="images/Charity RPG Logo.png" style="width:25%; height:auto; "></a></h1>
-					<nav id="nav" >
-						<ul>
-							<li><a href="index.php">Home</a></li>
-							<li><a href="about.php">About Us</a></li>
-							<li><a href="signup.php" class="button special">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header>
+				<?php
+				include("loggedoutmenu.php"); 
+				?>
 
 			<!-- Main -->
 				<div id="main" class="wrapper style1">
