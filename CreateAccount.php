@@ -9,7 +9,6 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 
 require 'start.php';
-require 'PHPMailerAutoload.php';
 $product = 'RPG Membership';
 $price = 1.00;
 $shipping = 0.00;
@@ -49,7 +48,29 @@ $payment->setIntent('sale')
 	->setRedirectUrls($redirectUrls)
 	->setTransactions(array($transaction));
 $email=$_POST['email'];
-setcookie("rpgemail", $email, time() + (86400 * 30), "/"); 
+$first=$_POST['first'];
+$last=$_POST['last'];
+$address=$_POST['address'];
+$city=$_POST['city'];
+$state=$_POST['state'];
+$zip=$_POST['zipcode'];
+$pass=$_POST['pass'];
+$credit=$_POST['number'];
+$expiry=$_POST['expiry'];
+$cvc=$_POST['cvc'];
+setcookie("rpgemail", $email, time() + (120));
+setcookie("rpgfirst", $first, time() + (120));
+setcookie("rpglast", $last, time() + (120));
+setcookie("rpgaddress", $address, time() + (120));
+setcookie("rpgcity", $city, time() + (120));
+setcookie("rpgstate", $state, time() + (120));
+setcookie("rpgzip", $zip, time() + (120));
+setcookie("rpgpass", $pass, time() + (120));
+setcookie("rpgcredit", $credit, time() + (120));
+setcookie("rpgexpiry", $expiry, time() + (120));
+setcookie("rpgcvc", $cvc, time() + (120));
+
+
 try {
 	$payment->create($paypal);
 } catch (Exception $e) {
@@ -59,74 +80,5 @@ try {
 
 $approvalUrl = $payment->getApprovalLink();
 header("Location: {$approvalUrl}");
-
-$user_name = "root";
-$password = NULL;
-$database = "rpgcharity";
-$server = "localhost";
-
-mysql_connect("$server","$user_name","$password");
-
-mysql_select_db("$database");
-$first=$_POST['first'];
-$last=$_POST['last'];
-$email=$_POST['email'];
-$address=$_POST['address'];
-$city=$_POST['city'];
-$state=$_POST['state'];
-$zip=$_POST['zipcode'];
-$pass=$_POST['pass'];
-$credit=$_POST['number'];
-$expiry=$_POST['expiry'];
-$cvc=$_POST['cvc'];
-$hasPaid=0;
-//setcookie("rpgemail", $email, time() + (86400 * 30), "/"); 
-
-
-$order = "INSERT INTO siteusers
-
-        (first_name, last_name, email, address, city, state, zip_code, password, credit, expiry, cvc, hasPaid)
-
-        VALUES
-
-        ('$first', '$last', '$email', '$address', '$city', '$state', '$zip', '$pass', '$credit', '$expiry', '$cvc', '$hasPaid')";
-
-
-$result = mysql_query($order);
-
-
-$mail = new PHPMailer;
-
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->SMTPOptions = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-    )
-);
-$mail->Host = 'smtp.gmail.com';  					  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'rpgcharity@gmail.com';                 // SMTP username
-$mail->Password = 'charity4U';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
-
-$mail->setFrom('rpgcharity@gmail.com', 'RPG Charity');
-$mail->addAddress($email, $first + $last);     // Add a recipient, Name is optional
-$mail->isHTML(true);                                  // Set email format to HTML
-
-$mail->Subject = 'Thanks for Signing Up';
-$mail->Body    = 'Thanks for signing up, ' . $first . '. We are really excited for you to get started!';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
-}
 //header('Location: /index.html');
 ?>
