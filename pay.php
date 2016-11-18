@@ -22,7 +22,7 @@ try {
 } catch (Exception $e){
 	header('Location: /index.html');
 }
-
+session_start();
 $user_name = "root";
 $password = NULL;
 $database = "rpgcharity";
@@ -43,7 +43,8 @@ $credit=$_COOKIE['rpgcredit'];
 $expiry=$_COOKIE['rpgexpiry'];
 $cvc=$_COOKIE['rpgcvc'];
 $hasPaid=1;
-//setcookie("rpgemail", $email, time() + (86400 * 30), "/"); 
+//session variable for keeping track of if logged in
+$_SESSION['email'] = $email;
 
 
 $order = "INSERT INTO siteusers
@@ -57,7 +58,7 @@ $order = "INSERT INTO siteusers
 
 $result = mysql_query($order);
 
-
+//Send the user an email
 $mail = new PHPMailer;
 
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
