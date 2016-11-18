@@ -7,52 +7,60 @@
 <html>
 	<script>
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["stomp"];
+			var x = document.forms["ChoiceForm"]["heal"];
 
 			var result = document.createElement("p");
 			result.setAttribute("align","center");
 			result.style.fontSize="150%";
-			//alert(x);
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You stomp on the frog. The frog's blood gets all over your shoes. You wash your boots off in the pond and walk away."));
+				result.appendChild(document.createTextNode("You decided to heal him. Almost immediately, his gash is gone. He get's up quickly, thanks you, and heads down the road. You feel good about yourself."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","wizard2.html");
+				y.setAttribute("href","priest2.php");
 				y.setAttribute("class", "button small");
+
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
 				page.insertBefore(z, page.childNodes[1]);
-				
 				$("#buttondiv").append(y);
-				return false;
-			}
-			x = document.forms["ChoiceForm"]["kiss"];
-			if (x.checked){
-				result.appendChild(document.createTextNode('You pick the toad up, and give it a juicy kiss. Immediately, you see the frog transform into a woman. At least it looks like a woman. Moments later, you realize, it is actually a succubus from hell. The succubus begins to speak. "Thank you for setting me free from that pathetic form. Now I can unleash my wrath on the world!" She then lunges at you and starts eating you alive. You are dead. In addition, you have started the apocalypse.'));
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
-				
 				return false;
 			}
 			x = document.forms["ChoiceForm"]["ignore"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You completely ignore the frog. You start to walk away and moments later you look back and the frog has dissappeared. You put it out of your mind."));
+				result.appendChild(document.createTextNode("You walk away from him. You're a real jerk, but you continue on your way."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","wizard2.html");
+				y.setAttribute("href","priest2.php");
 				y.setAttribute("class", "button small");
+
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
 				page.insertBefore(z, page.childNodes[1]);
-				
+				$("#buttondiv").append(y);
+				return false;
+			}
+			x = document.forms["ChoiceForm"]["attack"];
+			if (x.checked){
+				result.appendChild(document.createTextNode("You snap his neck. You could have healed him, but you didn't how does that make you feel? You continue on your journey."));
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
+				var y = document.createElement("a");
+				y.setAttribute("href","priest2.php");
+				y.setAttribute("class", "button small");
+				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
 				$("#buttondiv").append(y);
 				return false;
 			}
@@ -83,8 +91,8 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -93,22 +101,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Wizard Adventure 1</h2>
+							<h2 align="center" id="Adventure">Priest Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You're relaxing against a tree beside your favorite pond, and you see a frog hop up to you. Surprisingly, the frog starts to speak. "Hi, could you help me out? I'm a princess - a really pretty one, I might add - but I'm trapped in the body of this frog. If you kiss me, I'll return to my normal form and I'll be forever grateful." What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You're walking on a long road and you see an injured person up ahead. As you approach, he speaks. "Please help me. I can see that you are a priest, and I could really use some help. Please." You then notice the source of his injury: he has large gash on his side. What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input type="radio" name="choice" value="stomp" id="stomp"/>
-  										<label for="stomp"> Stomp on the Frog </label><br>
+  										<input  type="radio" name="choice" value="heal" id="heal"/>
+  										<label for="heal"> Cast a spell of healing on him</label><br>
   									</div>
   									<div>
-  										<input type="radio" name="choice" value="kiss" id="kiss"/> 
-  										<label for="kiss">Kiss the frog</label><br>
+  										<input  type="radio" name="choice" value="ignore" id="ignore"/> 
+  										<label for="ignore">Ignore him, and keep on walking</label><br>
 	  								</div>
   									<div>
-  										<input type="radio" name="choice" value="ignore" id="ignore"/>
-  										<label for="ignore">Ignore the frog and walk away </label> <br>
+  										<input type="radio" name="choice" value="attack" id="attack"/>
+  										<label for="attack">Put him out of his misery </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">

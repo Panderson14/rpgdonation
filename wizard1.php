@@ -6,34 +6,21 @@
 -->
 <html>
 	<script>
-		function addAnswer(){
-			var check = document.getElementById("response");
-			if ($('#response').length == 0) {
-				var x = document.createElement("input");
-				x.setAttribute("type", "text");
-				x.setAttribute("id", "response");
-				$("#answerlabel").append(x);
-			}
-			
-		}
-		function removeAnswer(){
-			$("#response").remove();
-		}
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["answer"];
+			var x = document.forms["ChoiceForm"]["stomp"];
 
 			var result = document.createElement("p");
-			result.setAttribute("id", "result");
 			result.setAttribute("align","center");
 			result.style.fontSize="150%";
 			//alert(x);
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				if ($("#response").val().toUpperCase() == "HISTORY"){
-					result.appendChild(document.createTextNode('The goblin looks over at you in outrage. "How did you get that right?! You are the first I have encountered to get that right!" The goblin breathes deeply and seems to relax. "I suppose a deal is a deal. You may pass." You continue deeper into the forest.'));
+				result.appendChild(document.createTextNode("You stomp on the frog. The frog's blood gets all over your shoes. You wash your boots off in the pond and walk away."));
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","warrior2.html");
+				y.setAttribute("href","wizard2.php");
 				y.setAttribute("class", "button small");
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
 				var z = document.createElement("div");
@@ -42,31 +29,31 @@
 				page.insertBefore(z, page.childNodes[1]);
 				
 				$("#buttondiv").append(y);
-				}else {
-					result.appendChild(document.createTextNode('The goblin smiles sinisterly at you. "Guess what buddy? That is incorrect, and now you are going to pay the price." He then charges at you and stabs you in the chest repeatedly until you bleed out. You are dead.'));
-				}
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
 				return false;
 			}
-			x = document.forms["ChoiceForm"]["ignore"];
+			x = document.forms["ChoiceForm"]["kiss"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You tried to ignore the goblin. Goblins don't like to be ignored. As you walk away, the goblin throws his knife at you and it hits you in the jugular. You can't breathe and you die."));
+				result.appendChild(document.createTextNode('You pick the toad up, and give it a juicy kiss. Immediately, you see the frog transform into a woman. At least it looks like a woman. Moments later, you realize, it is actually a succubus from hell. The succubus begins to speak. "Thank you for setting me free from that pathetic form. Now I can unleash my wrath on the world!" She then lunges at you and starts eating you alive. You are dead. In addition, you have started the apocalypse.'));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				
 				return false;
 			}
-			x = document.forms["ChoiceForm"]["attack"];
+			x = document.forms["ChoiceForm"]["ignore"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("The goblin is very tiny. You easily pick him up by the throat and choke him out. The goblin is dead."));
+				result.appendChild(document.createTextNode("You completely ignore the frog. You start to walk away and moments later you look back and the frog has dissappeared. You put it out of your mind."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","warrior2.html");
+				y.setAttribute("href","wizard2.php");
 				y.setAttribute("class", "button small");
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
-				result.appendChild(y);
+				var z = document.createElement("div");
+				z.setAttribute("id", "buttondiv");
+				z.setAttribute("align", "center");
+				page.insertBefore(z, page.childNodes[1]);
+				
+				$("#buttondiv").append(y);
 				return false;
 			}
 
@@ -96,8 +83,8 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -106,22 +93,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Warrior Adventure 1</h2>
+							<h2 align="center" id="Adventure">Wizard Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You are walking deep into a forest, and all of a sudden a goblin appears! The goblin is decked out in a suit, the kind you might find on characters like James Bond. You see the goblin is holding an ornate knife. Then he begins to speak. "Answer me this riddle, or prepare to die. I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty." What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You're relaxing against a tree beside your favorite pond, and you see a frog hop up to you. Surprisingly, the frog starts to speak. "Hi, could you help me out? I'm a princess - a really pretty one, I might add - but I'm trapped in the body of this frog. If you kiss me, I'll return to my normal form and I'll be forever grateful." What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input onclick="addAnswer()" type="radio" name="choice" value="answer" id="answer"/>
-  										<label id = "answerlabel" for="answer"> Answer the riddle</label><br>
+  										<input type="radio" name="choice" value="stomp" id="stomp"/>
+  										<label for="stomp"> Stomp on the Frog </label><br>
   									</div>
   									<div>
-  										<input onclick = "removeAnswer()" type="radio" name="choice" value="attack" id="attack"/> 
-  										<label for="attack">Fight the goblin with your bare fists</label><br>
+  										<input type="radio" name="choice" value="kiss" id="kiss"/> 
+  										<label for="kiss">Kiss the frog</label><br>
 	  								</div>
   									<div>
-  										<input onclick = "removeAnswer()" type="radio" name="choice" value="ignore" id="ignore"/>
-  										<label for="ignore">Ignore the goblin and brush past him </label> <br>
+  										<input type="radio" name="choice" value="ignore" id="ignore"/>
+  										<label for="ignore">Ignore the frog and walk away </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">

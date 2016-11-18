@@ -27,7 +27,7 @@
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","rogue2.html");
+				y.setAttribute("href","rogue2.php");
 				y.setAttribute("class", "button small");
 
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
@@ -69,8 +69,8 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>

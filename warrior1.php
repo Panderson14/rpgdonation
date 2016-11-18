@@ -6,62 +6,67 @@
 -->
 <html>
 	<script>
+		function addAnswer(){
+			var check = document.getElementById("response");
+			if ($('#response').length == 0) {
+				var x = document.createElement("input");
+				x.setAttribute("type", "text");
+				x.setAttribute("id", "response");
+				$("#answerlabel").append(x);
+			}
+			
+		}
+		function removeAnswer(){
+			$("#response").remove();
+		}
 		function seeResult(){
-			var x = document.forms["ChoiceForm"]["heal"];
+			var x = document.forms["ChoiceForm"]["answer"];
 
 			var result = document.createElement("p");
+			result.setAttribute("id", "result");
 			result.setAttribute("align","center");
 			result.style.fontSize="150%";
+			//alert(x);
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You decided to heal him. Almost immediately, his gash is gone. He get's up quickly, thanks you, and heads down the road. You feel good about yourself."));
-				page.insertBefore(result, form);
-				$("#submitbutton").remove();
+				if ($("#response").val().toUpperCase() == "HISTORY"){
+					result.appendChild(document.createTextNode('The goblin looks over at you in outrage. "How did you get that right?! You are the first I have encountered to get that right!" The goblin breathes deeply and seems to relax. "I suppose a deal is a deal. You may pass." You continue deeper into the forest.'));
 				var y = document.createElement("a");
-				y.setAttribute("href","priest2.html");
+				y.setAttribute("href","warrior2.php");
 				y.setAttribute("class", "button small");
-
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
 				page.insertBefore(z, page.childNodes[1]);
+				
 				$("#buttondiv").append(y);
+				}else {
+					result.appendChild(document.createTextNode('The goblin smiles sinisterly at you. "Guess what buddy? That is incorrect, and now you are going to pay the price." He then charges at you and stabs you in the chest repeatedly until you bleed out. You are dead.'));
+				}
+				page.insertBefore(result, form);
+				$("#submitbutton").remove();
 				return false;
 			}
 			x = document.forms["ChoiceForm"]["ignore"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You walk away from him. You're a real jerk, but you continue on your way."));
+				result.appendChild(document.createTextNode("You tried to ignore the goblin. Goblins don't like to be ignored. As you walk away, the goblin throws his knife at you and it hits you in the jugular. You can't breathe and you die."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
-				var y = document.createElement("a");
-				y.setAttribute("href","priest2.html");
-				y.setAttribute("class", "button small");
-
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
-				var z = document.createElement("div");
-				z.setAttribute("id", "buttondiv");
-				z.setAttribute("align", "center");
-				page.insertBefore(z, page.childNodes[1]);
-				$("#buttondiv").append(y);
+				
 				return false;
 			}
 			x = document.forms["ChoiceForm"]["attack"];
 			if (x.checked){
-				result.appendChild(document.createTextNode("You snap his neck. You could have healed him, but you didn't how does that make you feel? You continue on your journey."));
+				result.appendChild(document.createTextNode("The goblin is very tiny. You easily pick him up by the throat and choke him out. The goblin is dead."));
 				page.insertBefore(result, form);
 				$("#submitbutton").remove();
 				var y = document.createElement("a");
-				y.setAttribute("href","priest2.html");
+				y.setAttribute("href","warrior2.php");
 				y.setAttribute("class", "button small");
 				y.appendChild(document.createTextNode("Proceed to the next adventure"));
-
-				var z = document.createElement("div");
-				z.setAttribute("id", "buttondiv");
-				z.setAttribute("align", "center");
-				page.insertBefore(z, page.childNodes[1]);
-				$("#buttondiv").append(y);
+				result.appendChild(y);
 				return false;
 			}
 
@@ -91,8 +96,8 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -101,22 +106,22 @@
 			<section id="banner">
 					<div class="content">
 						<header id="page">
-							<h2 align="center" id="Adventure">Priest Adventure 1</h2>
+							<h2 align="center" id="Adventure">Warrior Adventure 1</h2>
 							<div align="center">
-							<p align="center" style="font-size: 150%"> You're walking on a long road and you see an injured person up ahead. As you approach, he speaks. "Please help me. I can see that you are a priest, and I could really use some help. Please." You then notice the source of his injury: he has large gash on his side. What do you do? </p><br/><br/>
+							<p align="center" style="font-size: 150%"> You are walking deep into a forest, and all of a sudden a goblin appears! The goblin is decked out in a suit, the kind you might find on characters like James Bond. You see the goblin is holding an ornate knife. Then he begins to speak. "Answer me this riddle, or prepare to die. I don't have eyes, but once I did see. Once I had thoughts, but now I'm white and empty." What do you do? </p><br/><br/>
 							<form id="ChoiceForm" name="ChoiceForm" onsubmit="return seeResult()">
 								<div align="left" style="padding-left: 40%">
 									<div>
-  										<input  type="radio" name="choice" value="heal" id="heal"/>
-  										<label for="heal"> Cast a spell of healing on him</label><br>
+  										<input onclick="addAnswer()" type="radio" name="choice" value="answer" id="answer"/>
+  										<label id = "answerlabel" for="answer"> Answer the riddle</label><br>
   									</div>
   									<div>
-  										<input  type="radio" name="choice" value="ignore" id="ignore"/> 
-  										<label for="ignore">Ignore him, and keep on walking</label><br>
+  										<input onclick = "removeAnswer()" type="radio" name="choice" value="attack" id="attack"/> 
+  										<label for="attack">Fight the goblin with your bare fists</label><br>
 	  								</div>
   									<div>
-  										<input type="radio" name="choice" value="attack" id="attack"/>
-  										<label for="attack">Put him out of his misery </label> <br>
+  										<input onclick = "removeAnswer()" type="radio" name="choice" value="ignore" id="ignore"/>
+  										<label for="ignore">Ignore the goblin and brush past him </label> <br>
 									</div>
 									<div>
 										<input type="submit" value="Submit" id="submitbutton">

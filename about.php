@@ -24,8 +24,8 @@
 					<nav id="nav" >
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>

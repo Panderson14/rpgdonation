@@ -1,5 +1,5 @@
 <?php
-	session_start();d
+	session_start();
 	if (isset($_SESSION['email'])){
 		header('Location: /memberpage.php');
 	}
@@ -33,8 +33,8 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="signup.html" class="button special">Sign Up</a></li>
+							<li><a href="about.php">About Us</a></li>
+							<li><a href="signup.php" class="button special">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -46,10 +46,10 @@
 							<h2 align="center">Choose your class.</h2>
 							<h2 align="center">Start donating today.</h2>
 							<div align="center">
-						<a href="signup.html" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Warrior" style= "width: 19%; height: auto;" src="images/Warrior.png" ></a>
-						<a href="signup.html" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Wizard" style= "width: 19%; height: auto;" src="images/Wizard.png" ></a>
-						<a href="signup.html" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Priest" style= "width: 19%; height: auto;" src="images/Priest.png"></a>
-						<a href="signup.html" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Rogue" style= "width: 19%; height: auto;" src="images/Rogue.png"></a>
+						<a href="signup.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Warrior" style= "width: 19%; height: auto;" src="images/Warrior.png" ></a>
+						<a href="signup.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Wizard" style= "width: 19%; height: auto;" src="images/Wizard.png" ></a>
+						<a href="signup.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Priest" style= "width: 19%; height: auto;" src="images/Priest.png"></a>
+						<a href="signup.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Rogue" style= "width: 19%; height: auto;" src="images/Rogue.png"></a>
 						</div>
 						</header>
 						<p align="center"><br> RPG Charity is the latest innovation in donation services. Each decision you make along your journey will also be a choice to give back to your preferred charitable organization. </p>
