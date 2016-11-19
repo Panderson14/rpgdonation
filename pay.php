@@ -45,6 +45,7 @@ $cvc=$_COOKIE['rpgcvc'];
 $hasPaid=1;
 //session variable for keeping track of if logged in
 $_SESSION['email'] = $email;
+$_SESSION['firstName'] = $first;
 
 
 $order = "INSERT INTO siteusers
