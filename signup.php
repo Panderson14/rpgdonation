@@ -1,4 +1,9 @@
-
+<?php
+	session_start();
+	if (isset($_SESSION['email'])){
+		header('Location: /memberpage.php');
+	}
+?>
 <!DOCTYPE HTML>
 <!--
 	Landed by HTML5 UP
