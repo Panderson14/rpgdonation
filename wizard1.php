@@ -28,7 +28,7 @@
 				var y = document.createElement("a");
 				y.setAttribute("href","wizard2.php");
 				y.setAttribute("class", "button small");
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
@@ -53,7 +53,7 @@
 				var y = document.createElement("a");
 				y.setAttribute("href","wizard2.php");
 				y.setAttribute("class", "button small");
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
@@ -83,17 +83,22 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header">
-					<h1 id="logo"><a href="index.php">
-						<img src="images/Charity RPG Logo.png" style="width:25%; height:auto; "></a></h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.php">Home</a></li>
-							<li><a href="about.php">About Us</a></li>
-							<li><a href="signup.php" class="button special">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header>
+				<?php
+				include("loggedinmenu.php");
+				?>
+				<?php
+				$user_name = "root";
+				$password = NULL;
+				$database = "rpgcharity";
+				$server = "localhost";
+				mysql_connect("$server","$user_name","$password");
+				mysql_select_db("$database");
+				$email = $_SESSION['email'];
+				$order = "UPDATE siteusers 
+							SET wizard=0
+							WHERE email='$email'";
+				$result = mysql_query($order);
+				?>
 
 			<!-- Banner -->
 			<section id="banner">

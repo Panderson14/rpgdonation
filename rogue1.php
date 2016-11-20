@@ -36,7 +36,7 @@
 				y.setAttribute("href","rogue2.php");
 				y.setAttribute("class", "button small");
 
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				result.appendChild(y);
 				y.setAttribute("align", "center");
 				return false;
@@ -70,7 +70,20 @@
 
 			<!-- Header -->
 				<?php
-				include("loggedoutmenu.php"); 
+				include("loggedinmenu.php"); 
+				?>
+				<?php
+				$user_name = "root";
+				$password = NULL;
+				$database = "rpgcharity";
+				$server = "localhost";
+				mysql_connect("$server","$user_name","$password");
+				mysql_select_db("$database");
+				$email = $_SESSION['email'];
+				$order = "UPDATE siteusers 
+							SET rogue=0
+							WHERE email='$email'";
+				$result = mysql_query($order);
 				?>
 
 			<!-- Banner -->

@@ -19,7 +19,12 @@
 
 			<!-- Header -->
 				<?php
-				include("loggedoutmenu.php"); 
+				session_start();
+				if (isset($_SESSION['email'])){
+					include("loggedinmenu.php");
+				}else{
+					include("loggedoutmenu.php");
+				} 
 				?>
 
 			<!-- Main -->

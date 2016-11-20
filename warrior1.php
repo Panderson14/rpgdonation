@@ -36,12 +36,12 @@
 			var page = document.getElementById("page");
 			var form = page.childNodes[0];
 			if (x.checked){
-				if ($("#response").val().toUpperCase() == "HISTORY"){
+				if ($("#response").val().toUpperCase() == "SKULL"){
 					result.appendChild(document.createTextNode('The goblin looks over at you in outrage. "How did you get that right?! You are the first I have encountered to get that right!" The goblin breathes deeply and seems to relax. "I suppose a deal is a deal. You may pass." You continue deeper into the forest.'));
 				var y = document.createElement("a");
 				y.setAttribute("href","warrior2.php");
 				y.setAttribute("class", "button small");
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
@@ -71,7 +71,7 @@
 				var y = document.createElement("a");
 				y.setAttribute("href","warrior2.php");
 				y.setAttribute("class", "button small");
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				result.appendChild(y);
 				return false;
 			}
@@ -97,7 +97,20 @@
 
 			<!-- Header -->
 				<?php
-				include("loggedoutmenu.php"); 
+				include("loggedinmenu.php"); 
+				?>
+				<?php
+				$user_name = "root";
+				$password = NULL;
+				$database = "rpgcharity";
+				$server = "localhost";
+				mysql_connect("$server","$user_name","$password");
+				mysql_select_db("$database");
+				$email = $_SESSION['email'];
+				$order = "UPDATE siteusers 
+							SET warrior=0
+							WHERE email='$email'";
+				$result = mysql_query($order);
 				?>
 
 			<!-- Banner -->

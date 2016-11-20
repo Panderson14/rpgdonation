@@ -45,41 +45,13 @@
 
 							mysql_select_db("$database");
 							$email = $_SESSION['email'];
-							$order = "SELECT * FROM siteusers WHERE email='$email'";
-							$rogue;
-							$warrior;
-							$priest;
-							$wizard;
+							$order = "UPDATE siteusers 
+										SET rogue=1
+										WHERE email='$email'";
 							$result = mysql_query($order);
-							$row = mysql_fetch_array($result);
-							$rogue = $row['rogue'];
-							$warrior = $row['warrior'];
-							$priest = $row['priest'];
-							$wizard = $row['wizard'];
-							if ($rogue > 0 || $warrior > 0 || $priest > 0 || $wizard > 0){
-								echo '<h2 align="center">Continue your adventure.</h2>
-							<div align="center">';
-								if ($warrior > 0){
-									echo '<a href="warrior2.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Warrior" style= "width: 19%; height: auto;" src="images/Warrior.png" ></a>';
-								}
-								if ($wizard > 0){
-									echo '<a href="wizard2.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Wizard" style= "width: 19%; height: auto;" src="images/Wizard.png" ></a>';
-								}
-								if ($priest > 0){
-									echo '<a href="priest2.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Priest" style= "width: 19%; height: auto;" src="images/Priest.png"></a>';
-								}
-								if ($rogue > 0){
-									echo '<a href="rogue2.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Rogue" style= "width: 19%; height: auto;" src="images/Rogue.png"></a>';
-								}
-								echo '</div>';
-							}
 							?>
-							<h2 align="center">Start a new adventure.</h2>
-							<div align="center">
-						<a href="warrior1.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Warrior" style= "width: 19%; height: auto;" src="images/Warrior.png" ></a>
-						<a href="wizard1.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Wizard" style= "width: 19%; height: auto;" src="images/Wizard.png" ></a>
-						<a href="priest1.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Priest" style= "width: 19%; height: auto;" src="images/Priest.png"></a>
-						<a href="rogue1.php" style ="border-bottom: none;"><img data-placement="bottom" data-toggle="tooltip" title= "Rogue" style= "width: 19%; height: auto;" src="images/Rogue.png"></a>
+							<h2 align="center">More adventures coming soon!</h2>
+							<a  href = "index.php" class="button special fit">Return to the homepage</a>
 						</div>
 						</header>
 					</div> 

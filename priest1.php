@@ -28,7 +28,7 @@
 				y.setAttribute("href","priest2.php");
 				y.setAttribute("class", "button small");
 
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
@@ -45,7 +45,7 @@
 				y.setAttribute("href","priest2.php");
 				y.setAttribute("class", "button small");
 
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
 				z.setAttribute("align", "center");
@@ -61,7 +61,7 @@
 				var y = document.createElement("a");
 				y.setAttribute("href","priest2.php");
 				y.setAttribute("class", "button small");
-				y.appendChild(document.createTextNode("Proceed to the next adventure"));
+				y.appendChild(document.createTextNode("Save progress and proceed to the next adventure"));
 
 				var z = document.createElement("div");
 				z.setAttribute("id", "buttondiv");
@@ -92,7 +92,20 @@
 
 			<!-- Header -->
 				<?php
-				include("loggedoutmenu.php"); 
+				include("loggedinmenu.php"); 
+				?>
+				<?php
+				$user_name = "root";
+				$password = NULL;
+				$database = "rpgcharity";
+				$server = "localhost";
+				mysql_connect("$server","$user_name","$password");
+				mysql_select_db("$database");
+				$email = $_SESSION['email'];
+				$order = "UPDATE siteusers 
+							SET priest=0
+							WHERE email='$email'";
+				$result = mysql_query($order);
 				?>
 
 			<!-- Banner -->
