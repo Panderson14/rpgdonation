@@ -36,11 +36,7 @@
 
 			<!-- Header -->
 				<?php
-				if (isset($_SESSION['email'])){
-					include("loggedinmenu.php");
-				}else{
-					include("loggedoutmenu.php");
-				} 
+				include("loggedoutmenu.php");
 				?>
 
 			<!-- Main -->
@@ -54,7 +50,7 @@
 						<!-- Form -->
 							<section>
 								
-								<form name="newUserForm" method="post" onsubmit="return validateForm()" action="CreateAccount.php">
+								<form id="newUserForm" name="newUserForm" method="post" onsubmit="return validateForm()" action="CreateAccount.php">
 									<div class="row uniform 50%">
 										<div class="12u$">
 											<h3>Personal Information</h3>
@@ -189,7 +185,7 @@
 			<script src="assets/js/card.js"></script>
 			<script>
 		        new Card({
-		            form: document.querySelector('form'),
+		            form: document.querySelector('#newUserForm'),
 		            container: '.card-wrapper'
 		        });
 			</script>
