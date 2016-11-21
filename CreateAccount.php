@@ -58,17 +58,17 @@ $pass=$_POST['pass'];
 $credit=$_POST['number'];
 $expiry=$_POST['expiry'];
 $cvc=$_POST['cvc'];
-setcookie("rpgemail", $email, time() + (120));
-setcookie("rpgfirst", $first, time() + (120));
-setcookie("rpglast", $last, time() + (120));
-setcookie("rpgaddress", $address, time() + (120));
-setcookie("rpgcity", $city, time() + (120));
-setcookie("rpgstate", $state, time() + (120));
-setcookie("rpgzip", $zip, time() + (120));
-setcookie("rpgpass", $pass, time() + (120));
-setcookie("rpgcredit", $credit, time() + (120));
-setcookie("rpgexpiry", $expiry, time() + (120));
-setcookie("rpgcvc", $cvc, time() + (120));
+setcookie("rpgemail", $email, time() + (1200));
+setcookie("rpgfirst", $first, time() + (1200));
+setcookie("rpglast", $last, time() + (1200));
+setcookie("rpgaddress", $address, time() + (1200));
+setcookie("rpgcity", $city, time() + (1200));
+setcookie("rpgstate", $state, time() + (1200));
+setcookie("rpgzip", $zip, time() + (1200));
+setcookie("rpgpass", $pass, time() + (1200));
+setcookie("rpgcredit", $credit, time() + (1200));
+setcookie("rpgexpiry", $expiry, time() + (1200));
+setcookie("rpgcvc", $cvc, time() + (1200));
 
 
 try {
