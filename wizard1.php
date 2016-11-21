@@ -137,7 +137,7 @@
 				<footer id="footer">
 					<ul class="icons">
 						<li><a href="https://twitter.com/torryyang" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="https://github.com/Panderson14/rpgcharity" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="https://github.com/Panderson14/rpgdonation" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
 						<li><a href="mailto:willwill@virginia.edu" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
