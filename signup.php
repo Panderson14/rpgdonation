@@ -28,6 +28,23 @@
 		        alert("Not a valid e-mail address");
 		        return false;
 		    }
+		    var exp = document.forms["newUserForm"]["expiry"].value.replace(/\s+/g, '');
+			var exYear=exp.split("/").pop();
+			if (exYear.length > 2) {
+				alert("Expiry year should be 2 digits")
+				return false
+			}
+			var exMonth=exp.split("/")[0];
+			var today, someday;
+			exYear = '20' + exYear;
+			today = new Date();
+			someday = new Date();
+			someday.setFullYear(exYear, exMonth, 1);
+
+			if (someday < today) {
+			   alert("The expiry date is before today's date. Please select a valid expiry date");
+			   return false;
+}
 		}
 		</script>
 	</head>
