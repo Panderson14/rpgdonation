@@ -3,6 +3,7 @@ $user_name = "root";
 $password = NULL;
 $database = "rpgcharity";
 $server = "localhost";
+$loginSuccess = false;
 
 mysql_connect("$server","$user_name","$password");
 
@@ -19,6 +20,12 @@ if ($row['password'] == $password){
 	session_start();
 	$_SESSION['email'] = $email;
 	$_SESSION['firstName'] = $first;
+	$loginSuccess = true;
 }
-header("Location: /index.php");
+if($loginSuccess){
+	header("Location: /index.php");
+} else {
+	header("Location: /gg.php");
+}
+
 ?>
